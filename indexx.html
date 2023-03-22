@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h3, h4, span{
+            text-transform: capitalize;
+        }
+    </style>
+</head>
+<body>
+    <h2>Best Foods:</h2>
+
+    <button type="button" onclick="loadXMLDoc()">Show Foods</button>
+    <hr>
+    <div id="xmlConnections">
+        
+    </div>
+
+    <script>
+        function loadXMLDoc() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    createList(this);
+                }
+            };
+            xmlhttp.open("GET", "foods.xml", true);
+            xmlhttp.send();
+        }
+        
+        function createList(xml) {
+            var x, y, z, xmlDoc, txt;
+            
+            // Actual XML File Object mode
+            xmlDoc = xml.responseXML; 
+
+            var titles = xmlDoc.getElementsByTagName('foods')[0];
+            
+            txt='';
+            
+            // Children
+            for (x = 0; x < titles.children.length; x++) {
+
+                // Get Element Name (Childs)
+                txt += `<h3>${(x+1) + ": " + titles.children[x].tagName}</h3>`;
+                txt += `<ul>`;
+                for (y = 0; y < titles.children[x].children.length; y++) {
+                    // Get Sub Child
+                    txt += `<li><h4>${titles.children[x].children[y].tagName}</h4>`;
+                    
+                    for (z = 0; z < titles.children[x].children[y].children.length; z++) {
+                        // Temp Data Replacement
+                        var content = "";
+                        // Condtions Specific Element and Attribute
+                        if(titles.children[x].children[y].tagName.toLowerCase() === "brand" || titles.children[x].children[y].tagName.toLowerCase() === "item ")
+                            // Get 2 Sub Child (Visual : [Attribute] - [Value])
+                            content = `<span>${titles.children[x].children[y].children[z].getAttribute('type')}</span> - ${titles.children[x].children[y].children[z].childNodes[0].nodeValue}`;
+            
+                        else if(titles.children[x].children[y].children[z].tagName.toLowerCase() === "item")
+                            //(Visual : [ElementName] of [Attribute] - [Value])
+                            content = `<span>${titles.children[x].children[y].children[z].tagName + "</span>  " +titles.children[x].children[y].children[z].getAttribute('description')} - ${titles.children[x].children[y].children[z].childNodes[0].nodeValue}`;
+                        else if(titles.children[x].children[y].children[z].tagName.toLowerCase() === "")
+                            //(Visual : [Element Name 1 Sub Chils] [Element Name of 2 Sub Child] - [Value])
+                            content = `<span>${titles.children[x].children[y].tagName + " " + titles.children[x].children[y].children[z].tagName + "</span>" } - ${titles.children[x].children[y].children[z].childNodes[0].nodeValue}`;
+
+                        else
+                            //(Visual : [Element Name of 2 Sub Child] - [Value])
+                            content = `<span>${titles.children[x].children[y].children[z].tagName}</span> - ${titles.children[x].children[y].children[z].childNodes[0].nodeValue}`;
+
+                        txt += 
+                        `
+                            <ul>
+                                <li>${content}</li>
+                            </ul>
+                        `;
+                    }
+                    txt += `</li>`;
+                } 
+                    txt += `</ul>`;
+            document.getElementById("xmlConnections").innerHTML = txt;
+        }
+    }
+    </script>
+</body>
+</html>

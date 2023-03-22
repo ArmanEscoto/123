@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<foods>
+
+    <breakfast>
+            <menu>            
+                <item description="1">Tapsilog</item>
+                <item description="2">Longsilog</item>
+                <item description="3">Hotsilog</item>
+                <item description="4">Cornsilog</item>                
+                <item description="5">Hamsilog  </item>
+            </menu>
+    </breakfast>
+    <junkfood of="Music">
+        <brand>
+            <name id="1" type="top 1">Dominos</name>
+            <name id="2" type="top 2">Pizza Hut</name>
+            <name id="3" type="top 3">Pizza Corner</name>
+        </brand>
+        <pizza_list>
+            <list>Califorrnia Pizza</list>
+            <list>Chicago Pizza</list>
+            <list>Dessert Pizza</list>
+        </pizza_list>
+    </junkfood>
+    <lunch>
+        <adobo>
+            <descriptions description="Adobar">"A Philippine dish of fish or meat usually marinated in a sauce containing vinegar and garlic, browned in fat, and simmered in the marinade"</descriptions >
+            <ingredients description="sinigang_manok">Chicken</ingredients >
+            <ingredients description="sinigang_manok">Garlic Cloves</ingredients >
+            <ingredients description="sinigang_manok">Bay Leaves</ingredients >
+            <ingredients description="sinigang_manok">Soy Sauce</ingredients >
+            <ingredients description="sinigang_manok">Vinegar</ingredients >
+        </adobo>
+        <sinigang>
+            <descriptions description="Rock Song ">"Sinigang is a Filipino soup or stew characterized by its sour and savory taste"</descriptions >
+            <ingredients description="sinigang_manok">Pork</ingredients >
+            <ingredients description="sinigang_manok">Okra</ingredients >
+            <ingredients description="sinigang_manok">Daikon Radish</ingredients >
+            <ingredients description="sinigang_manok">Snake beans</ingredients >
+            <ingredients description="sinigang_manok">Ong Choy</ingredients >
+            <ingredients description="sinigang_manok">Tomatoes</ingredients >
+            <ingredients description="sinigang_manok">Chili Pepper</ingredients >
+            <ingredients description="sinigang_manok">Onions</ingredients >
+        </sinigang>
+    </lunch>
+</foods>
